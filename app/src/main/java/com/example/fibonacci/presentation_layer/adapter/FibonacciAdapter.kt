@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fibonacci.R
 import com.example.fibonacci.databinding.ListItemBinding
 
-private val diffUtil = object : DiffUtil.ItemCallback<Int>() {
-    override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
+private val diffUtil = object : DiffUtil.ItemCallback<ULong>() {
+    override fun areItemsTheSame(oldItem: ULong, newItem: ULong): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+    override fun areContentsTheSame(oldItem: ULong, newItem: ULong): Boolean {
         return oldItem == newItem
     }
 }
 
 
-class FibonacciAdapter : ListAdapter<Int, FibonacciAdapter.ViewHolder>(diffUtil) {
+class FibonacciAdapter : ListAdapter<ULong, FibonacciAdapter.ViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DataBindingUtil.inflate<ListItemBinding>(
@@ -35,7 +35,7 @@ class FibonacciAdapter : ListAdapter<Int, FibonacciAdapter.ViewHolder>(diffUtil)
 
     class ViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Int) {
+        fun bind(data: ULong) {
             binding.data = data.toString()
         }
     }
