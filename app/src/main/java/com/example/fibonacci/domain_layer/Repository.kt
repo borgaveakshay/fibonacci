@@ -1,6 +1,5 @@
 package com.example.fibonacci.domain_layer
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 interface Repository {
@@ -8,8 +7,8 @@ interface Repository {
     suspend fun getNextFibonacciNumber(
         maxValue: ULong,
         first: Int = 0,
-        second: Int = 1
-    ): Int
+        second: Int = 1,
+        result: MutableList<Int> = mutableListOf()
+    ): MutableList<Int>
 
-    fun getUpdatedList(): MutableLiveData<List<Int>>
 }

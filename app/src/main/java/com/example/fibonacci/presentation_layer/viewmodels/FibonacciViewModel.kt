@@ -1,5 +1,6 @@
 package com.example.fibonacci.presentation_layer.viewmodels
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fibonacci.domain_layer.Repository
@@ -12,15 +13,15 @@ class FibonacciViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
-    val fibonacciNumbers = repository.getUpdatedList()
-    
+    val fibonacciNumbers = MutableLiveData<List<Int>>()
+
     init {
         getFibonacciSeries()
     }
 
     private fun getFibonacciSeries() {
         viewModelScope.launch {
-            repository.getNextFibonacciNumber(3UL)
+            fibonacciNumbers.postValue(repository.getNextFibonacciNumber(10UL))
         }
     }
 }
